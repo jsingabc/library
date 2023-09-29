@@ -1,0 +1,50 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { min-height: 100vh; }
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#newBookContain {
+    display: flex;
+    justify-content: center;
+    background-color: whitesmoke;
+    font-size: 50px;
+}
+
+#newBook{
+    background-color: rgba(101, 100, 194, 0.726);
+    border-radius: 15%;
+    padding: 1%;
+    margin: 1% 1% 1% 1%;
+}
+
+#cards {
+    background-color: lightblue;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin-right: 5%;
+    margin-bottom: 5%;
+    background-color: blue;
+    color: white;
+    font-size: 200%;
+}
+
+#dialogDiv {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

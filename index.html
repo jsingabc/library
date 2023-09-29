@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="myscripts.js" defer></script>
+    <title>library</title>
+</head>
+<body>
+<div id="main">
+
+<div id="newBookContain">
+    <button id="newBook" onclick="myDialogFunct()">Add New Book</button>
+</div>
+
+<div id="cards"></div>
+
+
+<div id="dialogDiv">
+<dialog id="myDialog">
+    <h2>Add Book, Press Esc to leave</h2>
+    <form onsubmit="return false">
+
+        <label for="ids">Id:</label><br>
+        <input type="number" id="ids" name="ids"><br>
+
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author"><br>
+
+        <label for="pages">Number of Pages:</label><br>
+        <input type="number" id="pages" name="pages">
+
+        <p>Did you read the Book?</p>
+
+        <input type="radio" class="read" name="bookReadings" value="true">
+        <label for="read">Read</label><br>
+
+        <input type="radio" class="read" name="bookReadings" value="false">
+        <label for="notRead">Not Read</label><br>
+
+        <input id="submit" type="submit" value="Submit">
+ 
+    </form>
+</dialog>
+</div>
+
+</div>    
+
+</body>
+</html>
