@@ -1,5 +1,5 @@
 
-// makes my array
+// Main array
 let myLibrary = []
 // constructor function
 function Book(id, title, author, pages, readStatus){
@@ -13,21 +13,24 @@ function Book(id, title, author, pages, readStatus){
     }
     this.pushToTheList();
 }
-// prints inital list to console
+// Prints inital list to console
 console.log(myLibrary)
 
+// Changes read status on any object of book via array.haveRead()
 Book.prototype.haveRead = function(){
     this.readStatus = "Read"
 }
 
-// adds 3 books to my library that are objects
-//let book1 = new Book(1,"Python","Mary",250,"Not Read");
-//let book2 = new Book(2,"C#","Phil",500,"Not Read");
-//let book3 = new Book(3,"Java","Mia",125," Not Read");
+/* adds 3 books to my library that are objects
+ I used this in the beginnin to test a bunch
+let book1 = new Book(1,"Python","Mary",250,"Not Read");
+let book2 = new Book(2,"C#","Phil",500,"Not Read");
+let book3 = new Book(3,"Java","Mia",125," Not Read");*/
 
 
-// radio button function to control read status
+// radio button function to control read status on dialog box
 function ifRead(){
+    // targets the right form input
     let status = document.querySelector("input[name=bookReadings]:checked").value
     //console.log(status)
     if (status === "true") {
@@ -39,8 +42,9 @@ function ifRead(){
 }
 
 
-// function loops array, prints objects in a card div object
-// the objects are in the array list. each obj is a book object
+/* function loops myLibrary array,forEach loop gets me to key/values, html
+ a empty var added with divs, template literals via +=, grab cards which holds
+card, then add removebtn functionality, return html is very needed*/
 const displayBooks = () => {
     let html = "";
     Object.entries(myLibrary).forEach(([key, value]) => {
@@ -61,25 +65,19 @@ const displayBooks = () => {
     
     })
 
-
-    // remove button selected
     let removeBtn = document.querySelectorAll(".removeBook");
-    //console.log(removeBtn)
     removeBtn.forEach(function(item) {
         item.addEventListener("click", function(event) {
         console.log(item)
 
-        // grab all the nodes in programs by tag name
-        // let nodes = document.getElementsByTagName('*')
-
-        // cycle through all the button nodes gets the item i click
+        // this code grabs the index of the items var of forEach loop
         let needle = Array.prototype.indexOf.call(removeBtn, item);
         console.log(needle)
         // target index of click button and remove array object
         myLibrary.splice(needle, 1)
         //delete myLibrary[needle]
         
-        // targets and removes the dom of clicked div seperate from object
+        // targets and removes dom of click event div seperate from object
         event.target.closest('div').remove();
         // clear body text
         let html = "";
@@ -94,48 +92,37 @@ const displayBooks = () => {
     
 }
 
-
 // This creates my modal form get user book answers
 function myDialogFunct() {
     document.getElementById("myDialog").showModal();
 }
 
-
 // Make a new Book object below with modal and push to array
 let submitBtn = document.getElementById('submit');
 submitBtn.addEventListener('click', function(event) {
   event.preventDefault();
-
+        //creates variables to add below in let newBook
         id = +document.getElementById("ids").value;
         title = document.getElementById("title").value;
         author = document.getElementById("author").value;
         pages = +document.getElementById("pages").value;
         readStatus = ifRead();
-
+        //create new Object and add above variables
         let newBook = new Book(id, title, author, pages, readStatus)
-        displayBooks() 
-        newList = []
-        createList()
+        displayBooks() // updates the window with newBook
+        newList = [] //creates empty array, that is usable for btns, HTMLCollection was not
+        createList() //creates a array I can loop thru to access read btns div
 
 });
 
 //Display initial books
 displayBooks()
 
-//Does not add new divs.....
-//let readBtn = document.querySelectorAll(".isRead");
-
-//Notes target books per their index in array
-//Note proto functions work off the array dot notations
-//NOtes right now I am using HTML Collection and may need to fix
-//I need to first target button, div and index of library array
-
-//let readBtn = document.getElementsByClassName("isRead");
-
-
-    //NOTE mymMatch got me to the index i needed.
-     //var readBtnArr = Array.from(readBtn); tried to make a usable arr
-    //let readBtn = document.querySelectorAll(".changeRead");
+/*Does not add new divs.....
+let readBtn = document.querySelectorAll(".isRead");
+let readBtn = document.getElementsByClassName("isRead");
+the above creates HTMLCollection which is not iterable
+var readBtnArr = Array.from(readBtn); tried to make a usable arr*/
 
     let newList = []
     let readBtn;
@@ -147,22 +134,26 @@ displayBooks()
     changeText = document.getElementsByClassName("isRead");
 
 
-
+    //I had  recreate the array in newList the submit button then create new 
+    //button divs otherwise after I do one click the function just ends
     function createList() {
     for (let i = 0; i < readBtn.length; i++){
-    
+        // new list is created usable replace HTML collection from readBtn
         newList.push(readBtn[i])
         console.log(newList)
     }
-
+        // iterate newList Match the index to myLibrary array then add
+        // myLibrary.haveRead() prototype that affects Book Object right
         newList.forEach(function(item) {
         item.addEventListener("click", function(event){
             createList()
             let myMatch = Array.prototype.indexOf.call(newList, item);
             console.log(myMatch)
             console.log(myLibrary[myMatch].haveRead())
+            //function below creates usable arr from htmlcollection of div
+            //I used the myMatch index to match to div then add innerHTML div
             createTextList()
-
+            //changes the div that houses read display
             textList[myMatch].innerHTML = `<div class="isRead">Read: Read</div>`
         })
     })
@@ -175,6 +166,7 @@ displayBooks()
             textList.push(changeText[i])
             console.log(textList)
                }
+    }
     
             /*textList.forEach(function(item) {
             item.addEventListener("click", function(event){
@@ -185,5 +177,5 @@ displayBooks()
             })
         })*/
     
-        }
+    
 
