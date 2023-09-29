@@ -114,6 +114,8 @@ submitBtn.addEventListener('click', function(event) {
 
         let newBook = new Book(id, title, author, pages, readStatus)
         displayBooks() 
+        newList = []
+        createList()
 
 });
 
@@ -128,14 +130,60 @@ displayBooks()
 //NOtes right now I am using HTML Collection and may need to fix
 //I need to first target button, div and index of library array
 
-let readBtn = document.getElementsByClassName("isRead");
-var readBtnArr = Array.from(readBtn);
+//let readBtn = document.getElementsByClassName("isRead");
+
 
     //NOTE mymMatch got me to the index i needed.
-    /*let readBtn = document.querySelectorAll(".changeRead");
-    readBtn.forEach(function(item) {
+     //var readBtnArr = Array.from(readBtn); tried to make a usable arr
+    //let readBtn = document.querySelectorAll(".changeRead");
+
+    let newList = []
+    let readBtn;
+    readBtn = document.getElementsByClassName("changeRead");
+
+    
+    let changeText;
+    let textList = []
+    changeText = document.getElementsByClassName("isRead");
+
+
+
+    function createList() {
+    for (let i = 0; i < readBtn.length; i++){
+    
+        newList.push(readBtn[i])
+        console.log(newList)
+    }
+
+        newList.forEach(function(item) {
         item.addEventListener("click", function(event){
-            let myMatch = Array.prototype.indexOf.call(readBtn, item);
+            createList()
+            let myMatch = Array.prototype.indexOf.call(newList, item);
+            console.log(myMatch)
             console.log(myLibrary[myMatch].haveRead())
+            createTextList()
+
+            textList[myMatch].innerHTML = `<div class="isRead">Read: Read</div>`
         })
-    })*/
+    })
+
+    }
+
+
+    function createTextList() {
+        for (let i = 0; i < changeText.length; i++){
+            textList.push(changeText[i])
+            console.log(textList)
+               }
+    
+            /*textList.forEach(function(item) {
+            item.addEventListener("click", function(event){
+                let textMatch = Array.prototype.indexOf.call(textList, item);
+                console.log(textMatch)
+                textList[textMatch].innerHTML = `<div class="isRead">Read: Read</div>`
+                
+            })
+        })*/
+    
+        }
+
